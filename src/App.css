@@ -36,67 +36,6 @@ h2 {
   font-weight: bold;
 }
 
-.todo-input {
-  width: 100%;
-  border: none;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  padding: 14px;
-  font-size: 16px;
-  margin-top: 16px;
-}
-
-.todo-list {
-  margin-top: 32px;
-}
-
-.todo-item-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 24px;
-}
-
-.todo-item {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  font-size: 18px;
-  margin-right: 24px;
-}
-
-.todo-item-label {
-  margin-left: 16px;
-}
-
-.todo-item-input {
-  margin-left: 8px;
-  width: 100%;
-  border: none;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  padding: 8px;
-  font-size: 18px;
-}
-
-.line-through {
-  text-decoration: line-through;
-}
-
-.x-button {
-  background: white;
-  color: #6b7280;
-  border: none;
-  cursor: pointer;
-}
-
-.x-button:hover {
-  color: #1f2937;
-}
-
-.x-button-icon {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
 .button {
   color: #6b7280;
   font-size: 14px;
@@ -109,24 +48,6 @@ h2 {
 
 .button:hover {
   border: 1px solid lightgray;
-}
-
-.filter-button {
-  border: 1px solid white;
-}
-
-.filter-button-active {
-  border: 1px solid lightgray;
-}
-
-.check-all-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #6b7280;
-  margin-top: 22px;
-  padding-top: 16px;
-  border-top: 1px solid lightgray;
 }
 
 .other-buttons-container {

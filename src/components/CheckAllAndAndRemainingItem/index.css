@@ -1,0 +1,9 @@
+.check-all-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #6b7280;
+  margin-top: 22px;
+  padding-top: 16px;
+  border-top: 1px solid lightgray;
+}
