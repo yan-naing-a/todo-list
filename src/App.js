@@ -21,6 +21,7 @@ export default function App() {
       .catch((error) => console.log("Error: ", error));
   }, []);
 
+  //Add
   const addTodo = (todo) => {
     // server
     fetch("http://localhost:5000/todos", {
@@ -34,8 +35,6 @@ export default function App() {
     setTodos((prevState) => [...prevState, todo]);
   };
 
-  console.log(todos);
-
   return (
     <div className="todo-app-container">
       <div className="todo-app">
@@ -43,7 +42,7 @@ export default function App() {
         {/* todo form */}
         <TodoForm addTodo={addTodo} />
         {/* todo lists */}
-        <TodoList />
+        <TodoList todos={todos} />
         {/* check all and remaining items */}
         <CheckAllAndRemainingItem />
 
