@@ -35,6 +35,29 @@ export default function App() {
     setTodos((prevState) => [...prevState, todo]);
   };
 
+  //Update
+  const updateTodo = (todo) => {
+    //server
+    fetch(`http://localhost:5000/todos/${todo.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(todo),
+    });
+    //client
+    setTodos((prevState) => {
+      return prevState.map((t) => {
+        if (t.id === todo.id) {
+          return todo;
+        }
+        return t;
+      });
+    });
+  };
+
+  console.log("todos: ", todos);
+
   return (
     <div className="todo-app-container">
       <div className="todo-app">
@@ -42,7 +65,7 @@ export default function App() {
         {/* todo form */}
         <TodoForm addTodo={addTodo} />
         {/* todo lists */}
-        <TodoList todos={todos} />
+        <TodoList todos={todos} updateTodo={updateTodo} />
         {/* check all and remaining items */}
         <CheckAllAndRemainingItem />
 
