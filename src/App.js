@@ -59,6 +59,10 @@ export default function App() {
   //Delete
   const deleteTodo = (id) => {
     //server
+    fetch(`http://localhost:5000/todos/${id}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+    });
     //client
     setTodos((prevState) => prevState.filter((todo) => todo.id !== id));
   };
@@ -75,6 +79,18 @@ export default function App() {
     setTodos((prevState) =>
       prevState.map((todo) => ({ ...todo, completed: true }))
     );
+  };
+
+  //clear completed
+  const clearCompletedTodos = () => {
+    //server
+    todos.forEach((todo) => {
+      if (todo.completed) {
+        deleteTodo(todo.id);
+      }
+    });
+    //client
+    setTodos((prevState) => prevState.filter((todo) => !todo.completed));
   };
 
   return (
@@ -99,7 +115,7 @@ export default function App() {
           {/* todos filter*/}
           <TodoFilter />
           {/* clear completed button */}
-          <ClearCompletedButton />
+          <ClearCompletedButton clearCompletedTodos={clearCompletedTodos} />
         </div>
       </div>
     </div>

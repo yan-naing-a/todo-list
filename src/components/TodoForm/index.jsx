@@ -7,7 +7,7 @@ export default function TodoForm({ addTodo }) {
   const handleAddTodo = (e) => {
     e.preventDefault();
     const newTodo = {
-      id: Math.random(Math.floor() * 1000),
+      id: Date.now().toString(),
       title,
       completed: false,
     };

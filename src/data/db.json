@@ -3,22 +3,12 @@
     {
       "id": "1",
       "title": "Buy groceries",
-      "completed": true
+      "completed": false
     },
     {
-      "id": "2",
-      "title": "Walk the dog",
-      "completed": true
-    },
-    {
-      "id": "3",
-      "title": "Read a book",
-      "completed": true
-    },
-    {
-      "id": "0.8179591643262725",
-      "title": "Do homework",
-      "completed": true
+      "id": "1763298876825",
+      "title": "Clean the fan",
+      "completed": false
     }
   ]
 }

@@ -1,9 +1,11 @@
 import "./index.css";
 
-export default function ClearCompletedButton() {
+export default function ClearCompletedButton({ clearCompletedTodos }) {
   return (
     <div>
-      <button className="button">Clear completed</button>
+      <button className="button" onClick={clearCompletedTodos}>
+        Clear completed
+      </button>
     </div>
   );
 }
