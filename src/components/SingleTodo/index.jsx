@@ -20,10 +20,23 @@ export default function SingleTodo({ todo, updateTodo, deleteTodo }) {
     deleteTodo(todo.id);
   };
 
+  const handleCheckTodo = () => {
+    const updatedTodo = {
+      id: todo.id,
+      title: todo.title,
+      completed: !todo.completed,
+    };
+    updateTodo(updatedTodo);
+  };
+
   return (
     <li className="todo-item-container">
       <div className="todo-item">
-        <input type="checkbox" />
+        <input
+          type="checkbox"
+          checked={todo.completed}
+          onChange={handleCheckTodo}
+        />
         {!isEdit && (
           <span
             className={`todo-item-label ${
