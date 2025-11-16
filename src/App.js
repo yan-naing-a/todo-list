@@ -56,10 +56,25 @@ export default function App() {
     });
   };
 
+  //Delete
   const deleteTodo = (id) => {
     //server
     //client
     setTodos((prevState) => prevState.filter((todo) => todo.id !== id));
+  };
+
+  //check all and remaining items
+  const remainingCount = todos.filter((todo) => !todo.completed).length;
+
+  const checkAllTodos = () => {
+    //server
+    todos.forEach((todo) => {
+      updateTodo({ ...todo, completed: true });
+    });
+    //client
+    setTodos((prevState) =>
+      prevState.map((todo) => ({ ...todo, completed: true }))
+    );
   };
 
   return (
@@ -75,7 +90,10 @@ export default function App() {
           deleteTodo={deleteTodo}
         />
         {/* check all and remaining items */}
-        <CheckAllAndRemainingItem />
+        <CheckAllAndRemainingItem
+          remainingCount={remainingCount}
+          checkAllTodos={checkAllTodos}
+        />
 
         <div className="other-buttons-container">
           {/* todos filter*/}
