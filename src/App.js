@@ -56,7 +56,11 @@ export default function App() {
     });
   };
 
-  console.log("todos: ", todos);
+  const deleteTodo = (id) => {
+    //server
+    //client
+    setTodos((prevState) => prevState.filter((todo) => todo.id !== id));
+  };
 
   return (
     <div className="todo-app-container">
@@ -65,7 +69,11 @@ export default function App() {
         {/* todo form */}
         <TodoForm addTodo={addTodo} />
         {/* todo lists */}
-        <TodoList todos={todos} updateTodo={updateTodo} />
+        <TodoList
+          todos={todos}
+          updateTodo={updateTodo}
+          deleteTodo={deleteTodo}
+        />
         {/* check all and remaining items */}
         <CheckAllAndRemainingItem />
 

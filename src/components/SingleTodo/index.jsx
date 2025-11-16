@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./index.css";
 
-export default function SingleTodo({ todo, updateTodo }) {
+export default function SingleTodo({ todo, updateTodo, deleteTodo }) {
   const [isEdit, setIsEdit] = useState(false);
   const [title, setTitle] = useState(todo.title);
 
@@ -14,6 +14,10 @@ export default function SingleTodo({ todo, updateTodo }) {
     };
     updateTodo(updatedTodo);
     setIsEdit(false);
+  };
+
+  const handleDeleteTodo = () => {
+    deleteTodo(todo.id);
   };
 
   return (
@@ -41,7 +45,7 @@ export default function SingleTodo({ todo, updateTodo }) {
           </form>
         )}
       </div>
-      <button className="x-button">
+      <button className="x-button" onClick={handleDeleteTodo}>
         <svg
           className="x-button-icon"
           fill="none"
