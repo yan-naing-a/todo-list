@@ -11,7 +11,6 @@ export default function TodoForm({ addTodo }) {
       title,
       completed: false,
     };
-
     addTodo(newTodo);
     setTitle("");
   };

@@ -15,9 +15,7 @@ export default function App() {
   useEffect(() => {
     fetch(url)
       .then((response) => response.json())
-      .then((data) => {
-        setTodos(data);
-      })
+      .then((data) => setTodos(data))
       .catch((error) => console.log("Error: ", error));
   }, []);
 
@@ -59,10 +57,7 @@ export default function App() {
   //Delete
   const deleteTodo = (id) => {
     //server
-    fetch(`${url}/${id}`, {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
-    });
+    fetch(`${url}/${id}`, { method: "DELETE" });
     //client
     setTodos((prevState) => prevState.filter((todo) => todo.id !== id));
   };
@@ -105,24 +100,18 @@ export default function App() {
     <div className="todo-app-container">
       <div className="todo-app">
         <h2>Todo App</h2>
-        {/* todo form */}
         <TodoForm addTodo={addTodo} />
-        {/* todo lists */}
         <TodoList
           todos={filterTodos}
           updateTodo={updateTodo}
           deleteTodo={deleteTodo}
         />
-        {/* check all and remaining items */}
         <CheckAllAndRemainingItem
           remainingCount={remainingCount}
           checkAllTodos={checkAllTodos}
         />
-
         <div className="other-buttons-container">
-          {/* todos filter*/}
           <TodoFilter filterBy={filterBy} />
-          {/* clear completed button */}
           <ClearCompletedButton clearCompletedTodos={clearCompletedTodos} />
         </div>
       </div>
