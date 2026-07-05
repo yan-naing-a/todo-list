@@ -1,19 +1,19 @@
-import "./reset.css";
+import { useCallback, useEffect, useState } from "react";
 import "./App.css";
+import CheckAllAndRemainingItem from "./components/CheckAllAndRemainingItem";
+import ClearCompletedButton from "./components/ClearCompletedButton";
+import TodoFilter from "./components/TodoFilter";
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
-import CheckAllAndRemainingItem from "./components/CheckAllAndAndRemainingItem";
-import TodoFilter from "./components/TodoFilter";
-import ClearCompletedButton from "./components/ClearCompletedButton";
-import { useCallback, useEffect, useState } from "react";
+import config from "./config";
+import "./reset.css";
 
 export default function App() {
   const [todos, setTodos] = useState([]);
   const [filterTodos, setFilterTodos] = useState(todos);
-  const url = "http://localhost:5000/todos";
 
   useEffect(() => {
-    fetch(url)
+    fetch(config.apiBaseUrl)
       .then((response) => response.json())
       .then((data) => setTodos(data))
       .catch((error) => console.log("Error: ", error));
@@ -22,11 +22,9 @@ export default function App() {
   //Add
   const addTodo = (todo) => {
     // server
-    fetch(url, {
+    fetch(config.apiBaseUrl, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(todo),
     });
     //client
@@ -36,28 +34,19 @@ export default function App() {
   //Update
   const updateTodo = (todo) => {
     //server
-    fetch(`${url}/${todo.id}`, {
+    fetch(`${config.apiBaseUrl}/${todo.id}`, {
       method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(todo),
     });
     //client
-    setTodos((prevState) => {
-      return prevState.map((t) => {
-        if (t.id === todo.id) {
-          return todo;
-        }
-        return t;
-      });
-    });
+    setTodos((prevState) => prevState.map((t) => (t.id === todo.id ? todo : t)));
   };
 
   //Delete
   const deleteTodo = (id) => {
     //server
-    fetch(`${url}/${id}`, { method: "DELETE" });
+    fetch(`${config.apiBaseUrl}/${id}`, { method: "DELETE" });
     //client
     setTodos((prevState) => prevState.filter((todo) => todo.id !== id));
   };
@@ -69,9 +58,7 @@ export default function App() {
     //server
     todos.forEach((todo) => updateTodo({ ...todo, completed: true }));
     //client
-    setTodos((prevState) =>
-      prevState.map((todo) => ({ ...todo, completed: true }))
-    );
+    setTodos((prevState) => prevState.map((todo) => ({ ...todo, completed: true })));
   };
 
   //clear completed
@@ -93,23 +80,16 @@ export default function App() {
         setFilterTodos(todos.filter((todo) => todo.completed));
       }
     },
-    [todos]
+    [todos],
   );
 
   return (
     <div className="todo-app-container">
       <div className="todo-app">
-        <h2>Todo App</h2>
+        <h1 style={{ fontSize: "30px", color: "steelblue" }}>Todo App</h1>
         <TodoForm addTodo={addTodo} />
-        <TodoList
-          todos={filterTodos}
-          updateTodo={updateTodo}
-          deleteTodo={deleteTodo}
-        />
-        <CheckAllAndRemainingItem
-          remainingCount={remainingCount}
-          checkAllTodos={checkAllTodos}
-        />
+        <TodoList todos={filterTodos} updateTodo={updateTodo} deleteTodo={deleteTodo} />
+        <CheckAllAndRemainingItem remainingCount={remainingCount} checkAllTodos={checkAllTodos} />
         <div className="other-buttons-container">
           <TodoFilter filterBy={filterBy} />
           <ClearCompletedButton clearCompletedTodos={clearCompletedTodos} />

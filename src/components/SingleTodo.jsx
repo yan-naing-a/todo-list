@@ -1,7 +1,7 @@
 import { useState } from "react";
-import "./index.css";
+import XIcon from "./Icons/XIcon";
 
-export default function SingleTodo({ todo, updateTodo, deleteTodo }) {
+const SingleTodo = ({ todo, updateTodo, deleteTodo }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [title, setTitle] = useState(todo.title);
 
@@ -32,16 +32,10 @@ export default function SingleTodo({ todo, updateTodo, deleteTodo }) {
   return (
     <li className="todo-item-container">
       <div className="todo-item">
-        <input
-          type="checkbox"
-          checked={todo.completed}
-          onChange={handleCheckTodo}
-        />
+        <input type="checkbox" checked={todo.completed} onChange={handleCheckTodo} />
         {!isEdit && (
           <span
-            className={`todo-item-label ${
-              todo.completed ? "line-through" : ""
-            }`}
+            className={`todo-item-label ${todo.completed ? "line-through" : ""}`}
             onDoubleClick={() => setIsEdit(true)}
           >
             {todo.title}
@@ -59,20 +53,10 @@ export default function SingleTodo({ todo, updateTodo, deleteTodo }) {
         )}
       </div>
       <button className="x-button" onClick={handleDeleteTodo}>
-        <svg
-          className="x-button-icon"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M6 18L18 6M6 6l12 12"
-          />
-        </svg>
+        <XIcon />
       </button>
     </li>
   );
-}
+};
+
+export default SingleTodo;

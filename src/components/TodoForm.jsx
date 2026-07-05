@@ -1,7 +1,6 @@
 import { useState } from "react";
-import "./index.css";
 
-export default function TodoForm({ addTodo }) {
+const TodoForm = ({ addTodo }) => {
   const [title, setTitle] = useState("");
 
   const handleAddTodo = (e) => {
@@ -19,11 +18,20 @@ export default function TodoForm({ addTodo }) {
     <form action="#" onSubmit={handleAddTodo}>
       <input
         type="text"
-        className="todo-input"
+        style={{
+          width: "100%",
+          border: "none",
+          boxShadow: "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
+          padding: "14px",
+          fontSize: "16px",
+          marginTop: "16px",
+        }}
         placeholder="What do you need to do?"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
     </form>
   );
-}
+};
+
+export default TodoForm;
